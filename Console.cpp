@@ -31,6 +31,12 @@ void restart() {
 	logo(logo_location.first,logo_location.second);
 }
 
+struct Player {
+	int score;
+	int x;
+	int y;
+};
+
 int main_2() {
 	//test();
 	while (true) {
@@ -44,6 +50,10 @@ int main() {
 	
 	//
 	size_main = 36;
+	int player_1_score = 0;
+	int player_2_score = 0;
+	int* ptr_score_1 = &player_1_score;
+	int* ptr_score_2 = &player_2_score;
 	int top = 1;
 	int left = 1;
 	int cnt = 1;
@@ -52,12 +62,14 @@ int main() {
 	int* ptr_cnt = &cnt;
 	int* ptr_x = &x;
 	int* ptr_y = &y;
+	int score_1 = 0;
+	int score_2 = 0;
 
 	//
 	ShowConsoleCursor(false);
 	set_value();
-	set_player_1(cnt, 0);
-	set_player_2(cnt, 0);
+	set_player_1(cnt, score_1);
+	set_player_2(cnt, score_2);
 	logo(logo_location.first, logo_location.second);
 
 	setColor(7, 0);
@@ -69,31 +81,36 @@ int main() {
 	col(38 * 3, 0, 42);
 	row(20, 38 * 3+1, 38 * 4 - 3);
 	setColor(10,0 );
-	//print();
+	bool check_setvalue = false;
 	while (true) {
 		int q = 0;
-		set_player_1(cnt % 2, 0);
-		set_player_2(1 - cnt % 2, 0);
+		set_player_1(cnt % 2, score_1  );
+		set_player_2(1 - cnt % 2, score_2);
 		int X = (x - left) / 2 + 1;
 		int Y = y - top + 1;
 		setColor(13 - f[Y][X], 0);
 		control(ptr_x, ptr_y, left, top, ptr_cnt);
 		if (check(X, Y) == 1) {
-			sound();
+			//sound();
 			//clear(0, 0, 50, 50);
-			setCursor(20, 20);
-			cout << "  hi ";
+			setCursor(logo_location.first , logo_location.second + 10);
+			cout << "  C : contunue or Q : quit ";
 			winner(f[Y][X]);
+			if (check_setvalue == false) {
+				if (f[X][Y] == 1) score_1++; else score_2++;
+				check_setvalue = true;
+			}
 			if (_kbhit()) {
 				char ch = _getch();
 				if (ch == 'c') {
 					restart();
+					check_setvalue = false;
 					x = left + size_main;
 					y = top + size_main / 2;
 					*ptr_x = x;
 					*ptr_y = y;
-					cnt = 1;
-					*ptr_cnt = 0;
+					cnt = (score_1 + score_2) % 2 + 1;
+					*ptr_cnt = cnt;
 					control(ptr_x, ptr_y, left, top, ptr_cnt);
 					set_value();
 					setColor(7, 0);

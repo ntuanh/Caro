@@ -62,17 +62,21 @@ void logo(int x , int y) {
     cout << "              \\/     \\/  ";
 }
 
-void set_player_1(bool boolen, int score) {
+void set_player_1(bool boolen, int score_1) {
     setCursor(38*3+3, 5);
-    setColor(5, int(boolen));
-    cout << "Player 1 [x]";// Score : "<< score;
+    setColor(6, int(boolen)  );
+    cout << "Player 1 [x]     ";
+    setColor(13, 0);
+    cout << "Score : " << score_1 ; 
     //setColor(10, 0);
 }
 
-void set_player_2(bool boolen, int score) {
+void set_player_2(bool boolen, int score_2) {
     setCursor(38*3+3, 25);
-    setColor(10, int(boolen));
-    cout << "Player 2 [o]";// Score: "<< score;
+    setColor(6, int(boolen) );
+    cout << "Player 2 [o]     ";// Score: "<< score;
+    setColor(14, 0);
+    cout << "Score : " << score_2;
     //setColor(11, 0);
 }
 

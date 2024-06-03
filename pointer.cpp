@@ -46,7 +46,7 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
     string s[4] = { "   " , " x " , " o " , "[]" };
     setCursor(1, 1);
     //cout << " " << int(_getch());
-    int keys[] = { 13, 'W', 'S', 'D' ,'A', 'E' , 72};
+    int keys[] = { 13, 'W', 'S', 'E' ,'A' , 72};
     for (int i = 0; i < 6; i++) {
         int v = GetAsyncKeyState(keys[i]);
 
@@ -57,7 +57,7 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
             {
                 //setColor(10, 0);
                 //se
-            case 'D':
+            case 'E':
                 if (f[Y][X + 1] != 4) X++;
                 //setCursor(1, 1);
                 //setColor(9, 2);
