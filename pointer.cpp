@@ -1,7 +1,6 @@
 ﻿#include "includes.h"
 
 
-
 void ShowConsoleCursor(bool showFlag)
 {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -49,8 +48,8 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
     int keys[] = { 13, 'W', 'S', 'E' ,'A' , 72};
     for (int i = 0; i < 6; i++) {
         int v = GetAsyncKeyState(keys[i]);
-
         if (v & 1) {
+            //sound_kick();
             setCursor(x, y);
             cout << s[f[Y][X]];
             switch (keys[i])
@@ -76,6 +75,7 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
                 //cout << "nhan phim A";
                 break;
             case 13:
+                sound_kick();
                 if (f[Y][X] == 0) {
                     if (cnt % 2 == 0)f[Y][X] = 2;else
                         f[Y][X] = 1;
@@ -87,6 +87,7 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
             //cout << x << " " << y << " " << "nhan phim " << ch <<" f : " <<f[y-top][(x-left)/2+1];
         }
     }
+    //sound_kick();
     *ptr_cnt = cnt;
     x = (X - 1) * 2 + left;
     y = Y + top - 1;
@@ -98,7 +99,7 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
     int aqua = 11;
     int red = 12;
     setCursor(x, y);
-    setColor(green, 0);
+    drawing.setColor(green, 0);
     cout << "[ ]";
     setCursor(x + 1, y);
     switch (f[Y][X]) {
@@ -106,11 +107,11 @@ void control(int* ptr_x, int* ptr_y, int left, int top, int* ptr_cnt) {
         cout << " ";
         break;
     case 1:
-        setColor(red, 0);
+        drawing.setColor(red, 0);
         cout << "x";
         break;
     case 2:
-        setColor(aqua, 0);
+        drawing.setColor(aqua, 0);
         cout << "o";
         break;
     }

@@ -5,6 +5,8 @@
 #include<chrono>
 #include<string.h>
 #include<conio.h>
+#include<mmsystem.h>
+#include<Windows.h>
 
 #include"pointer.h"
 #include"Drawing.h"
@@ -14,6 +16,8 @@
 
 
 using namespace std; 
+
+//extern Drawing drawing;
 
 //extern int f[40][40];
 

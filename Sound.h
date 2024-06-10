@@ -1,3 +1,4 @@
 #pragma once
 #include "includes.h"
-void sound();
+void sound_keyboard();
+int sound_kick();

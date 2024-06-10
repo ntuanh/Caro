@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//extern Drawing drawing;
 
 void delay(int delaytime) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(delaytime));
@@ -25,10 +26,10 @@ void test() {
 void restart() {
 	logo_location.first = 38 * 2 - 1;
 	logo_location.second = 10;
-	clear(0, 0, 150, 42);
+	drawing.clear(0, 0, 150, 42);
 	setCursor(0, 0);
 	set_value();
-	logo(logo_location.first,logo_location.second);
+	drawing.logo(logo_location.first,logo_location.second);
 }
 
 struct Player {
@@ -37,12 +38,14 @@ struct Player {
 	int y;
 };
 
-int main_2() {
-	//test();
-	while (true) {
-		test();
-	}
+
+int main_sound() {
+	sound_keyboard();
+	delay(100);
+	sound_kick();
+	return 0;
 }
+
 int main() {
 	logo_location.first = 38 * 2 - 1;
 	logo_location.second = 10;
@@ -54,7 +57,7 @@ int main() {
 	int player_2_score = 0;
 	int* ptr_score_1 = &player_1_score;
 	int* ptr_score_2 = &player_2_score;
-	int top = 1;
+	int top = 4;
 	int left = 1;
 	int cnt = 1;
 	int x = left+ size_main;
@@ -68,27 +71,27 @@ int main() {
 	//
 	ShowConsoleCursor(false);
 	set_value();
-	set_player_1(cnt, score_1);
-	set_player_2(cnt, score_2);
-	logo(logo_location.first, logo_location.second);
+	drawing.set_player_1(cnt, score_1);
+	drawing.set_player_2(cnt, score_2);
+	drawing.logo(logo_location.first, logo_location.second);
 
-	setColor(7, 0);
-	retangle(left - 1, top - 1 , size_main , size_main * 2 + 1);
-	setColor(9, 0);
+	drawing.setColor(7, 0);
+	drawing.retangle(left - 1, top - 1 , size_main , size_main * 2 + 1);
+	drawing.setColor(9, 0);
 	//logo(38*2 - 1, 10);
 	setCursor(38 * 3, 10);
-	setColor(7, 0);
-	col(38 * 3, 0, 42);
-	row(20, 38 * 3+1, 38 * 4 - 3);
-	setColor(10,0 );
+	drawing.setColor(7, 0);
+	drawing.col(38 * 3, 0, 42 , 177);
+	drawing.row(20, 38 * 3+1, 38 * 4 - 3  , 177);
+	drawing.setColor(10,0 );
 	bool check_setvalue = false;
 	while (true) {
 		int q = 0;
-		set_player_1(cnt % 2, score_1  );
-		set_player_2(1 - cnt % 2, score_2);
+		drawing.set_player_1(cnt % 2, score_1  );
+		drawing.set_player_2(1 - cnt % 2, score_2);
 		int X = (x - left) / 2 + 1;
 		int Y = y - top + 1;
-		setColor(13 - f[Y][X], 0);
+		drawing.setColor(13 - f[Y][X], 0);
 		control(ptr_x, ptr_y, left, top, ptr_cnt);
 		X = (*ptr_x - left) / 2 + 1;
 		Y = (*ptr_y - top + 1);
@@ -96,8 +99,8 @@ int main() {
 			//sound();
 			//clear(0, 0, 50, 50);
 			setCursor(logo_location.first , logo_location.second + 10);
-			cout << "  C : contunue or Q : quit ";
-			winner(f[Y][X]);
+			cout << "  C : contunue or ESC : quit ";
+			drawing.winner(f[Y][X]);
 			if (check_setvalue == false) {
 				//print();
 				if (f[Y][X] == 1) score_1++; else score_2++;
@@ -105,7 +108,7 @@ int main() {
 				//cout << " value of f[X][Y] : " << X << " " << Y <<" " <<f[X][Y];
 				check_setvalue = true;
 			}
-			if (_kbhit()) {
+			while  ( ! _kbhit()) {
 				char ch = _getch();
 				if (ch == 'c') {
 					restart();
@@ -118,15 +121,19 @@ int main() {
 					*ptr_cnt = cnt;
 					control(ptr_x, ptr_y, left, top, ptr_cnt);
 					set_value();
-					setColor(7, 0);
-					retangle(left - 1, top - 1, size_main, size_main * 2 + 1);
+					drawing.setColor(7, 0);
+					drawing.retangle(left - 1, top - 1, size_main, size_main * 2 + 1);
 					setCursor(38 * 3, 10);
-					setColor(7, 0);
-					col(38 * 3, 0, 42);
-					row(20, 38 * 3 + 1, 38 * 4 - 3);
-					setColor(10, 0);
+					drawing.setColor(7, 0);
+					drawing.col(38 * 3, 0, 42 , 177 );
+					drawing.row(20, 38 * 3 + 1, 38 * 4 - 3 , 177);
+					drawing.setColor(10, 0);
+					break;
 				}
-				else if (int(ch) == 27)break;
+				else if (int(ch) == 27) {
+					sound_keyboard();
+					break;
+				}
 			}
 		}
 
@@ -134,27 +141,6 @@ int main() {
 		if (_kbhit()) {
 			char ch = _getch();
 			if (int(ch) == 27)break;
-			/*if (ch == 'c') {
-				restart();
-				x = left;
-				y = top;
-				*ptr_x = x;
-				*ptr_y = y;
-				cnt = 1;
-				*ptr_cnt = 0;
-				control(ptr_x, ptr_y, left, top, ptr_cnt);
-				set_value();
-				setColor(7, 0);
-				retangle(left - 1, top - 1, size_main, size_main * 2 + 1);
-				setCursor(38 * 3, 10);
-				setColor(7, 0);
-				col(38 * 3, 0, 42);
-				row(20, 38 * 3 + 1, 38 * 4 - 3);
-				setColor(10, 0);
-
-				//setCursor(0, 20);
-				//print();
-			}*/
 		}
 	}
 	return 0 ;

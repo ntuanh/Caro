@@ -1,7 +1,9 @@
 ﻿#include"includes.h"
 
+Drawing drawing;
+
 // Hàm thiết lập màu sắc văn bản
-void setColor(int textColor, int backgroundColor) {
+void Drawing::setColor(int textColor, int backgroundColor) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, (backgroundColor << 4) | textColor);
 }
@@ -20,7 +22,7 @@ void setColor(int textColor, int backgroundColor) {
 
 
 // ve hinh vuong
-void retangle(int left, int top, int size_col, int size_row) {
+void Drawing::retangle(int left, int top, int size_col, int size_row) {
     setCursor(0, 0);
     for (int i = 0; i <= size_col; i++) {
         for (int j = 0; j <= size_row; j++)cout << " ";
@@ -46,7 +48,7 @@ void retangle(int left, int top, int size_col, int size_row) {
 }
 
 // ve logo 
-void logo(int x , int y) {
+void Drawing::logo(int x , int y) {
     setColor(7, 0);
     setCursor(x, y);
     cout << "     __________" << endl;
@@ -62,7 +64,7 @@ void logo(int x , int y) {
     cout << "              \\/     \\/  ";
 }
 
-void set_player_1(bool boolen, int score_1) {
+void Drawing::set_player_1(bool boolen, int score_1) {
     setCursor(38*3+3, 5);
     setColor(6, int(boolen)  );
     cout << "Player 1 [x]     ";
@@ -71,7 +73,7 @@ void set_player_1(bool boolen, int score_1) {
     //setColor(10, 0);
 }
 
-void set_player_2(bool boolen, int score_2) {
+void Drawing::set_player_2(bool boolen, int score_2) {
     setCursor(38*3+3, 25);
     setColor(6, int(boolen) );
     cout << "Player 2 [o]     ";// Score: "<< score;
@@ -80,20 +82,20 @@ void set_player_2(bool boolen, int score_2) {
     //setColor(11, 0);
 }
 
-void col(int x ,int begin, int end ) {
+void Drawing::col(int x ,int begin, int end , int ascii ) {
     for (int i = begin; i <= end;i++) {
         setCursor(x, i);
-        cout << char(186);
+        cout << char(ascii);
     }
 }
 
-void row(int y, int begin, int end) {
+void Drawing::row(int y, int begin, int end , int ascii ) {
     setCursor(begin, y);
     for (int i = begin;  i <= end ; i++)
-        cout << char(205);
+        cout << char(ascii);
 }
 
-void winner(int n) {
+void Drawing::winner(int n) {
     setColor(10, 7);
     setCursor(38 * 2 + 4, 17);
     if (n== 1) {
@@ -106,7 +108,7 @@ void winner(int n) {
     }
 }
 
-void clear(int x1, int y1, int x2, int y2) {
+void Drawing::clear(int x1, int y1, int x2, int y2) {
     setColor(0, 0);
     for (int i = y1; i <= y2; i++) {
         setCursor(x1, i);
@@ -114,7 +116,7 @@ void clear(int x1, int y1, int x2, int y2) {
     }
 }
 
-void brear(int x, int y) {
+void Drawing::brear(int x, int y) {
     /*
     ╭╮╱▔▔▔▔▔╲╭╮
     ╰╱╭▅╮　╭▅╮╲╯ 　　　　
@@ -122,3 +124,5 @@ void brear(int x, int y) {
     ╲╲　╲╰┻╯╱　╱╱　
 ╲　　╲╲　▔▔▔　╱╱　　*/
 }
+
+//Drawing drawing;

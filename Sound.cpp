@@ -4,12 +4,13 @@
 
 #pragma comment(lib, "winmm.lib")
 
-void sound()
+void sound_keyboard()
 {
-	bool isPlay = PlaySound(L"magnetic.wav", NULL, SND_FILENAME);
-
-	if (isPlay)
-		printf("This sound can be played");
-
+	bool isPlay = PlaySound(L"magnetic.wav", NULL, SND_FILENAME  );
 	//return 0;
+}
+
+int sound_kick() {
+	PlaySound(L"kick.wav", NULL, SND_FILENAME | SND_ASYNC);
+	return 0;
 }
