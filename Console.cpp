@@ -90,6 +90,8 @@ int main() {
 		int Y = y - top + 1;
 		setColor(13 - f[Y][X], 0);
 		control(ptr_x, ptr_y, left, top, ptr_cnt);
+		X = (*ptr_x - left) / 2 + 1;
+		Y = (*ptr_y - top + 1);
 		if (check(X, Y) == 1) {
 			//sound();
 			//clear(0, 0, 50, 50);
@@ -97,7 +99,10 @@ int main() {
 			cout << "  C : contunue or Q : quit ";
 			winner(f[Y][X]);
 			if (check_setvalue == false) {
-				if (f[X][Y] == 1) score_1++; else score_2++;
+				//print();
+				if (f[Y][X] == 1) score_1++; else score_2++;
+				setCursor(100, 1);
+				//cout << " value of f[X][Y] : " << X << " " << Y <<" " <<f[X][Y];
 				check_setvalue = true;
 			}
 			if (_kbhit()) {
@@ -176,3 +181,5 @@ int main_1() {
 
 	return 0;
 }
+
+// sudoku 

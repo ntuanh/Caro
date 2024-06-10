@@ -1,6 +1,6 @@
 #pragma once
 #include "includes.h"
-extern int f[40][40];
+extern byte f[40][40];
 extern int size_main;
 
 

@@ -11,3 +11,4 @@ void col(int x, int begin, int end);
 void row(int y, int begin, int end);
 void winner(int n );
 void clear(int x1, int y1, int x2, int y2);
+void brear(int x, int y);

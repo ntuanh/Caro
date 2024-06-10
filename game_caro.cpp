@@ -1,5 +1,5 @@
 #include"includes.h"
-int f[40][40];
+byte f[40][40];
 int size_main;
 void set_value() {
 	for (int i = 0; i < 40; i++)
@@ -47,7 +47,7 @@ bool check(int x, int y) {
 }
 
 void print() {
-	set_value();
+	//set_value();
 	//f[1][1] = 2;
 	for (int i = 0 ; i <= size_main + 1; i++) {
 		for (int j = 0; j <= size_main + 1; j++)cout << f[i][j] << " ";
