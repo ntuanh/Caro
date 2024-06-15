@@ -14,6 +14,8 @@ public:
 	void winner(int n);
 	void clear(int x1, int y1, int x2, int y2);
 	void brear(int x, int y);
+	void teacher(int x, int y);
+	void students(int x, int y);
 };
 
 extern Drawing drawing; 

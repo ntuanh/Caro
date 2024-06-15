@@ -67,10 +67,26 @@ int main() {
 	int* ptr_y = &y;
 	int score_1 = 0;
 	int score_2 = 0;
+	int mode = 0;
+	int* ptr_mode = &mode;
 
 	//
 	ShowConsoleCursor(false);
+	bool check_mode = true;
+	while (check_mode == true) {
+		intro.Table(60 , 10);
+		intro.Control_table(ptr_mode);
+	}
+	while (!_kbhit()) {
+		setCursor(30, 30);
+		cout << " Press C to continue <3 " << *ptr_mode ;
+		char  ch = _getch();
+		if (ch == 'c')break;
+	}
+	
+	drawing.clear(0, 0, 150, 50);
 	set_value();
+	cout << *ptr_mode << endl;
 	drawing.set_player_1(cnt, score_1);
 	drawing.set_player_2(cnt, score_2);
 	drawing.logo(logo_location.first, logo_location.second);

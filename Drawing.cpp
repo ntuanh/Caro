@@ -22,7 +22,8 @@ void Drawing::setColor(int textColor, int backgroundColor) {
 
 
 // ve hinh vuong
-void Drawing::retangle(int left, int top, int size_col, int size_row) {
+void Drawing::retangle(int left, int top, int size_col, int size_row ) {
+    
     setCursor(0, 0);
     for (int i = 0; i <= size_col; i++) {
         for (int j = 0; j <= size_row; j++)cout << " ";
@@ -123,6 +124,18 @@ void Drawing::brear(int x, int y) {
      ▏╰╱▔▇▔╲╯▕ 　
     ╲╲　╲╰┻╯╱　╱╱　
 ╲　　╲╲　▔▔▔　╱╱　　*/
+}
+
+void Drawing::teacher(int x, int y) {
+    setCursor(x, y);
+    cout << " Teacher :                 ^.^  ";
+    setCursor(x, y + 1);
+    cout << "           Vu Song Tung         ";
+}
+
+void Drawing::students(int x, int y) {
+    setCursor(x, y);
+    cout << " Nguyen Tuan Anh 20233258      Bui Cong Thanh 2023xxxx";
 }
 
 //Drawing drawing;

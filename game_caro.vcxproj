@@ -131,6 +131,7 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Drawing.cpp" />
     <ClCompile Include="game_caro.cpp" />
+    <ClCompile Include="Intro.cpp" />
     <ClCompile Include="pointer.cpp" />
     <ClCompile Include="Sound.cpp" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="game_caro.h" />
     <ClInclude Include="includes.h" />
+    <ClInclude Include="Intro.h" />
     <ClInclude Include="pointer.h" />
     <ClInclude Include="Sound.h" />
   </ItemGroup>

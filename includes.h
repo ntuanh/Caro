@@ -7,12 +7,15 @@
 #include<conio.h>
 #include<mmsystem.h>
 #include<Windows.h>
+#include<string.h>
+#include<utility>
 
 #include"pointer.h"
 #include"Drawing.h"
 #include"game_caro.h"
 #include"animation.h"	
 #include"Sound.h"
+#include"Intro.h"
 
 
 using namespace std; 
